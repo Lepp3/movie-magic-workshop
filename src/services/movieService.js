@@ -5,7 +5,10 @@ export default {
     getAll(filter = {}){
         let result = movies;
         if(filter.name){
-            result = result.filter(movie=>(movie.name).toLowerCase().includes((filter.name).toLowerCase()));
+            result = result.filter(movie=>movie.name.toLowerCase().includes(filter.name.toLowerCase()));
+        }
+        if(filter.genre){
+            result = result.filter(movie=>movie.name.toLowerCase() === filter.name.toLowerCase());
         }
         return result
     },
