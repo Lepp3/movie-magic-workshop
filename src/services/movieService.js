@@ -2,8 +2,12 @@ import movies from '../movies.js';
 import {v4 as uuidv4} from 'uuid';
 
 export default {
-    getAll(){
-        return movies
+    getAll(filter = {}){
+        let result = movies;
+        if(filter.name){
+            result = result.filter(movie=>(movie.name).toLowerCase().includes((filter.name).toLowerCase()));
+        }
+        return result
     },
     findMovie(movieId){
         //TODO : If no movie with given id
