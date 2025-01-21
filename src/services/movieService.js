@@ -10,6 +10,9 @@ export default {
         if(filter.genre){
             result = result.filter(movie=>movie.name.toLowerCase() === filter.name.toLowerCase());
         }
+        if(filter.year){
+            result = result.filter(movie=>movie.year  === filter.year);
+        }
         return result
     },
     findMovie(movieId){
