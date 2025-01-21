@@ -24,6 +24,12 @@ movieController.post('/create',(req,res)=>{
     res.redirect('/')
 
     res.end();
+});
+
+movieController.get('/search',(req,res)=>{
+    const movies = movieService.getAll();
+
+    res.render('search', {movies});
 })
 
 export default movieController;
