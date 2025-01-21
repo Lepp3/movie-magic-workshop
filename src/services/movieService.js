@@ -2,6 +2,9 @@ import movies from '../movies.js';
 import {v4 as uuidv4} from 'uuid';
 
 export default {
+    getAll(){
+        return movies
+    },
     findMovie(movieId){
         //TODO : If no movie with given id
         const movie = movies.find(movie => movie.id === movieId);
@@ -14,7 +17,8 @@ export default {
         const newId = uuidv4();
         movies.push({
             id : newId,
-            ...movieData
+            ...movieData,
+            rating: Number(movieData.rating),
         });
 
         return newId
