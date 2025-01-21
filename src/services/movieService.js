@@ -1,4 +1,5 @@
 import movies from '../movies.js';
+import {v4 as uuidv4} from 'uuid';
 
 export default {
     findMovie(movieId){
@@ -7,6 +8,16 @@ export default {
     
         return movie;
     
+    },
+
+    createMovieData(movieData){
+        const newId = uuidv4();
+        movies.push({
+            id : newId,
+            ...movieData
+        });
+
+        return newId
     }
 }
 
