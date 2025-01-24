@@ -10,9 +10,9 @@ movieController.get('/create',(req,res)=>{
     res.render('create')
 });
 
-movieController.get('/:movieId/details',(req,res)=>{
+movieController.get('/:movieId/details',async (req,res)=>{
     const movieId = req.params.movieId;
-    const movie = movieService.findMovie(movieId);
+    const movie = await movieService.findMovie(movieId).lean();
     res.render('details',{movie});
 });
 

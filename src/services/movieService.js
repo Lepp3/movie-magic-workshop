@@ -4,21 +4,11 @@ import Movie from '../models/Movie.js';
 
 export default {
     getAll(filter = {}){
-        // let result = movies;
-        // if(filter.name){
-        //     result = result.filter(movie=>movie.name.toLowerCase().includes(filter.name.toLowerCase()));
-        // }
-        // if(filter.genre){
-        //     result = result.filter(movie=>movie.name.toLowerCase() === filter.name.toLowerCase());
-        // }
-        // if(filter.year){
-        //     result = result.filter(movie=>movie.year  === filter.year);
-        // }
         return Movie.find({});
     },
     findMovie(movieId){
         //TODO : If no movie with given id
-        const movie = movies.find(movie => movie.id === movieId);
+        const movie = Movie.findById(movieId);
     
         return movie;
     
