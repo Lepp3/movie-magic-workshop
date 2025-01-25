@@ -19,8 +19,7 @@ export default {
         return query;
     },
     findMovie(movieId){
-        //TODO : If no movie with given id
-        const movie = Movie.findById(movieId)
+        const movie = Movie.findById(movieId).populate('casts');
     
         return movie;
     
