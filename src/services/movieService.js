@@ -19,9 +19,13 @@ export default {
         return query;
     },
     findMovie(movieId){
-        const movie = Movie.findById(movieId).populate('casts');
+        const movie = Movie.findById(movieId);
     
         return movie;
+    
+    },
+    findMovieWithCasts(movieId){
+        return this.findMovie(movieId).populate('casts');
     
     },
 
