@@ -7,5 +7,5 @@ export default  {
     },
     getAll(){
         return Cast.find();
-    }
+    },
 }
