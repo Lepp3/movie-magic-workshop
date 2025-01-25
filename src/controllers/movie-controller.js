@@ -13,7 +13,7 @@ movieController.get('/create',(req,res)=>{
 movieController.get('/:movieId/details',async (req,res)=>{
     const movieId = req.params.movieId;
     const movie = await movieService.findMovie(movieId).lean();
-    res.render('details',{movie});
+    res.render('movie/details',{movie});
 });
 
 movieController.post('/create',async (req,res)=>{
