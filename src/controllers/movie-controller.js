@@ -31,6 +31,14 @@ movieController.get('/search',async (req,res)=>{
     const movies = await movieService.getAll(filter).lean();
 
     res.render('search', {movies, filter});
+});
+
+movieController.get('/:movieId/attach-cast', async (req,res)=>{
+    const movieId = req.params.movieId;
+    const movie = await movieService.findMovie(movieId).lean();
+
+    res.render('movie/cast-attach',{movie});
+
 })
 
 export default movieController;
