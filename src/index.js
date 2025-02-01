@@ -11,7 +11,7 @@ const app = express();
 
 try{
     await mongoose.connect(process.env.DATABASE_URI);
-    console.log('Connected Successfully')
+    console.log('Connected Successfully');
 }catch(err){
     console.log('Could not connect');
     console.error(err.message);
