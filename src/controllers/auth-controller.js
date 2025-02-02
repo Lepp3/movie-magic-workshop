@@ -1,9 +1,15 @@
-import Router from 'express';
+import {Router} from 'express';
 
 const authController = Router();
 
 authController.get('/register', (req,res)=>{
-    res,render('auth/register')
+    res.render('auth/register');
+});
+
+authController.post('/register',async (req,res)=>{
+    const newUser = req.body;
+    console.log(newUser);
+    res.end();
 })
 
 
