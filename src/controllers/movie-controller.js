@@ -12,6 +12,7 @@ movieController.get('/create',(req,res)=>{
 });
 
 movieController.get('/:movieId/details',async (req,res)=>{
+    console.log(req.user);
     const movieId = req.params.movieId;
     const movie = await movieService.findMovieWithCasts(movieId).lean();
     res.render('movie/details',{movie});
