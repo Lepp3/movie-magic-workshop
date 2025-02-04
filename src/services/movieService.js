@@ -36,6 +36,8 @@ export default {
             rating: Number(movieData.rating),
             creator: creatorId,
         });
+
+        console.log(result);
         
         return result;
     },
@@ -53,6 +55,10 @@ export default {
         
         // Second way to attach movie
         return Movie.findByIdAndUpdate(movieId,{$push: {casts:castId}});
+    },
+
+    delete(movieId){
+        return Movie.findByIdAndDelete(movieId);
     }
 }
 
