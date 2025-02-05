@@ -100,6 +100,23 @@ movieController.get('/:movieId/edit', async (req,res)=>{
 
     
     res.render('movie/edit', {movie, categories});
+});
+
+movieController.post('/:movieId/edit', async (req,res)=>{
+    const movieId = req.params.movieId;
+    const movieData = req.body;
+    const user = req.user.id;
+    const movie = await movieService.findMovie(movieId);
+    if(!movie.creator?.equals(user)){
+        return res.redirect('/');
+    }
+
+    await movieService.update(movieId,movieData);
+
+    return res.redirect(`/movies/${movieId}/details`);
+
+
+
 })
 
 export default movieController;
