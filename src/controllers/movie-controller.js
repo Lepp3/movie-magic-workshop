@@ -1,17 +1,18 @@
 import { Router } from "express";
 import movieService from "../services/movieService.js";
 import castService from "../services/castService.js";
+import { isAuth } from "../middlewares/auth-middleware.js";
 
 
 
 const movieController = Router();
 
 
-movieController.get('/create',(req,res)=>{
+movieController.get('/create', isAuth,(req,res)=>{
     res.render('create')
 });
 
-movieController.get('/:movieId/details',async (req,res)=>{
+movieController.get('/:movieId/details', async (req,res)=>{
     const movieId = req.params.movieId;
     const movie = await movieService.findMovieWithCasts(movieId).lean();
     const isCreator = movie.creator && movie.creator?.toString() === req.user.id;
@@ -38,7 +39,7 @@ movieController.get('/search',async (req,res)=>{
     res.render('search', {movies, filter});
 });
 
-movieController.get('/:movieId/attach-cast', async (req,res)=>{
+movieController.get('/:movieId/attach-cast',isAuth, async (req,res)=>{
     const movieId = req.params.movieId;
     const movie = await movieService.findMovie(movieId).lean();
     const casts = await castService.getAll({exclude: movie.casts}).lean();
@@ -99,7 +100,7 @@ movieController.get('/:movieId/edit', async (req,res)=>{
     
 
     
-    res.render('movie/edit', {movie, categories});
+    res.render('movie/edit', {movie, categories, pageTitle: "Edit Movie"});
 });
 
 movieController.post('/:movieId/edit', async (req,res)=>{
