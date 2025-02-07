@@ -10,7 +10,7 @@ const userSchema = new Schema({
     },
     password:{
         type: String,
-        match: /^\w+$/,
+        match: [/^\w+$/,'Forbidden character used!'],
         minlength: [6,'Password should be atleast 6 characters!']
     }
 });
