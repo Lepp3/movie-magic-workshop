@@ -6,14 +6,15 @@ import 'dotenv/config';
 
 const secret = process.env.SECRET;
 export default {
-    register(userData){
+    async register(userData){
         if(userData.password !== userData.rePassword){
             throw new Error('Passwords missmatch!');
         }
 
         //validate if email exists
-        const userCount = User.countDocuments({email: userData.email});
+        const userCount = await User.countDocuments({email: userData.email});
         if(userCount > 0){
+            
             throw new Error('Email already exists');
         }
 
