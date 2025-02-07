@@ -7,6 +7,12 @@ import 'dotenv/config';
 const secret = process.env.SECRET;
 export default {
     register(userData){
+        //validate if email exists
+        const userCount = User.countDocuments({email: userData.email});
+        if(userCount > 0){
+            throw Error('Email already exists');
+        }
+
         return User.create(userData);
     },
     async login(email,password){
