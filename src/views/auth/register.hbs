@@ -1,4 +1,9 @@
          <section id="register-page">
+            {{#if error}}
+            <div style="width: max-content;height: 30px; align-self:flex-end">
+                {{error}}
+            </div>
+            {{/if}}
                 <div class="registerSection">
                     <div class="info-register">
                         <h2>"I hope you're pleased with yourselves. We could all have been killed — or worse, expelled. Now if you don't mind, I'm going to bed."</h2>
