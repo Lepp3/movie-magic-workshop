@@ -21,7 +21,7 @@ export default {
         return User.create(userData);
     },
     async login(email,password){
-        let isValid = false;
+       
         const user = await User.findOne({email});
 
         if(!user){
