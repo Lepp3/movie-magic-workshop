@@ -4,14 +4,17 @@ import bcrypt from 'bcrypt';
 const userSchema = new Schema({
     email:{
         type: String,
+        required: [true, "Email is required!"],
         unique: true,
-        match: /\@[a-zA-Z]+.[a-zA-Z]+$/,
+        match: [/\@[a-zA-Z]+.[a-zA-Z]+$/,'Invalid Email format!'],
         minlength: 10
     },
     password:{
         type: String,
         match: [/^\w+$/,'Forbidden character used!'],
-        minlength: [6,'Password should be atleast 6 characters!']
+        minlength: [6,'Password should be atleast 6 characters!'],
+        required: [true,'Password is required!'],
+       
     }
 });
 

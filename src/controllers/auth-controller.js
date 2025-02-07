@@ -1,5 +1,7 @@
 import {Router} from 'express';
 import authService from '../services/authService.js';
+import { getErrorMessage } from '../utils/error-utils.js';
+
 
 const authController = Router();
 
@@ -12,7 +14,8 @@ authController.post('/register',async (req,res)=>{
     try{
         await authService.register(userData);
     }catch(err){
-        console.log(err.message);
+       console.log(getErrorMessage(err))
+
     }
     
     res.redirect('/auth/login');
