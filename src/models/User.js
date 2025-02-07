@@ -11,9 +11,18 @@ const userSchema = new Schema({
     password:{
         type: String,
         match: /^\w+$/,
-        minlength: 6,
+        minlength: [6,'Password should be atleast 6 characters!']
     }
 });
+
+
+//virtual property approach for repeat password missmatch
+// userSchema.virtual('rePassword')
+// .set(function(rePassword){
+//     if(rePassword !== this.password){
+//         throw new Error('Password missmatch');
+//     }
+// });
 
 userSchema.pre('save',async function(){
     this.password = await bcrypt.hash(this.password,10);

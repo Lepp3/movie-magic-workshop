@@ -7,10 +7,14 @@ import 'dotenv/config';
 const secret = process.env.SECRET;
 export default {
     register(userData){
+        if(userData.password !== userData.rePassword){
+            throw new Error('Passwords missmatch!');
+        }
+
         //validate if email exists
         const userCount = User.countDocuments({email: userData.email});
         if(userCount > 0){
-            throw Error('Email already exists');
+            throw new Error('Email already exists');
         }
 
         return User.create(userData);
